@@ -18,7 +18,7 @@ def index():
 #/api/scrapeエンドポイントのGETリクエストを処理
 @app.route('/scrape', methods=['POST'])
 def scrape(): #スクレイピング処理
-    username = request.args.get('username') #usernameを取得
+    username = request.form['username'] #usernameを取得
     if not username: #usernameが指定されていない場合
         return jsonify({'error': 'Username is required'}), 400
     
@@ -53,7 +53,7 @@ def scrape(): #スクレイピング処理
         driver.quit()
 
         # 画像のURLを生成
-        image_url = f'/static/{filename}'
+        image_url = f'/tmp/{filename}'
 
         return jsonify({'message': f'スクリーンショットが保存されました: {filename}', 'url': image_url})
         #スクレイピング結果URLをクリップボードにコピーする
