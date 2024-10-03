@@ -15,7 +15,7 @@ def index():
     return render_template('index.html')
 
 #/api/scrapeエンドポイントのGETリクエストを処理
-@app.route('/scrape', methods=['POST'])
+@app.route('/api/scrape', methods=['POST'])
 def scrape(): #スクレイピング処理
     username = request.form['username'] #usernameを取得
     if not username: #usernameが指定されていない場合
@@ -45,14 +45,14 @@ def scrape(): #スクレイピング処理
         image = Image.open(io.BytesIO(canvas_screenshot))
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S') # 現在時刻を取得
         filename = f'rating_graph_image_{username}_{timestamp}.png'
-        image_path = os.path.join('/tmp', filename)
+        image_path = os.path.join(app.static_folder, filename)
         image.save(image_path)
 
         # ブラウザを閉じる
         driver.quit()
 
         # 画像のURLを生成
-        image_url = f'/tmp/{filename}'
+        image_url = f'/static/{filename}'
 
         return jsonify({'message': f'スクリーンショットが保存されました: {filename}', 'url': image_url})
         
