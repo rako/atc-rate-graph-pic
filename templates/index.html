@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>AtCoder User Rating Graph</title>
+  </head>
+  <body>
+    <h1>AtCoder User Rating Graph Scraper</h1>
+    <form id="scrapeForm" action="/scrape" method="post">
+      <label for="username">AtCoder Username:</label>
+      <input type="text" id="username" name="username" required />
+      <button type="submit">画像のURL取得</button>
+    </form>
+    <div id="result" style="margin-top: 20px;"></div>
+      <p id="message"></p>
+      <button id="copyButton" style="display: none;" onclick="copyToClipboard()">URLをクリップボードにコピー</button>
+    </div>
+    <script>
+      document.getElementById('scrapeForm').onsubmit = async function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const response = await fetch('/scrape', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        if (result.url) { // 結果が正常に取得できた場合
+          document.getElementById('message').textContent = result.message; // 結果のメッセージを表示
+          document.getElementById('copyButton').style.display = 'block';
+          document.getElementById('copyButton').setAttribute('data-url', result.url); // 結果のurlタグをdata-url属性にセット
+        } else {
+          document.getElementById('message').textContent = result.error;
+          document.getElementById('copyButton').style.display = 'none';
+        }
+      };
+
+      function copyToClipboard() {
+        const url = document.getElementById('copyButton').getAttribute('data-url');
+        navigator.clipboard.writeText(url).then(() => {
+          alert('URL copied to clipboard');
+        }).catch(err => {
+          alert('Failed to copy URL: ', err);
+        });
+      }
+    </script>
+  </body>
+</html>
