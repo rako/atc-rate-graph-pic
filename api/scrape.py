@@ -53,7 +53,7 @@ def scrape(): #スクレイピング処理
         driver.quit()
 
         # 画像のURLを生成
-        image_url = f'/tmp/{filename}'
+        image_url = f'/static/{filename}'
 
         return jsonify({'message': f'スクリーンショットが保存されました: {filename}', 'url': image_url})
         #スクレイピング結果URLをクリップボードにコピーする
