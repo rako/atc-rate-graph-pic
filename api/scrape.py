@@ -3,10 +3,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image
 import io
-from flask import Flask, jsonify, request
-from datatime import datetime
+from flask import Flask, jsonify, request, render_template
+from datetime import datetime
 import os
-##import pyperclip
 
 #Flaskのセットアップ
 app = Flask(__name__)
@@ -56,6 +55,7 @@ def scrape(): #スクレイピング処理
         image_url = f'/tmp/{filename}'
 
         return jsonify({'message': f'スクリーンショットが保存されました: {filename}', 'url': image_url})
+        
         #スクレイピング結果URLをクリップボードにコピーする
 
 
