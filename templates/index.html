@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>AtCoder User Rating Graph Scraper</h1>
-    <form id="scrapeForm" action="/api/scrape" method="post">
+    <form id="scrapeForm" action="/scrape" method="post">
       <label for="username">AtCoder Username:</label>
       <input type="text" id="username" name="username" required />
       <button type="submit">画像のURL取得</button>
@@ -21,7 +21,7 @@
       document.getElementById("scrapeForm").onsubmit = async function (event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const response = await fetch("/api/scrape", {
+        const response = await fetch("/scrape", {
           method: "POST",
           body: formData,
         });
