@@ -36,7 +36,7 @@ def scrape(): #スクレイピング処理
         driver.implicitly_wait(10)
 
         # canvas要素を取得
-        canvas = driver.find_element_by_tag_name(ratingGraph)
+        canvas = driver.find_element_by_tag_name('ratingGraph')
 
         # canvas要素のスクリーンショットを撮る
         canvas_screenshot = canvas.screenshot_as_png
