@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "scrape.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/scrape",
