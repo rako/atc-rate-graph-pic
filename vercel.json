@@ -1,5 +1,14 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "scrape.py",
+      "use": "@vercel/python",
+      "config": {
+        "installCommand": "pip install -r requirements.txt"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/scrape",
