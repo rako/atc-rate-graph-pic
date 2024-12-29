@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AtCoder User Rating Graph</title>
+  <style>
+    body {
+      text-align: center; /* テキストの中央揃え */
+    }
+  </style>
+</head>
+
+<body>
+  <p>AtCoderのユーザー名を入れてください</p>
+  <form id="username-form">
+    <input type="text" name="username" />
+    <input type="submit" value="送信" />
+  </form>
+  <p id="result"></p>
+  <script>
+    // こっちはQiitaで紹介されていたコードでちょっと変えてみた
+    document.getElementById('username-form').onsubmit = function (event) {
+      event.preventDefault(); //再読み込み防止
+      const username = document.getElementById('username-form').username.value;
+      document.getElementById('result').textContent = `https://atcoder.jp/users/${username}`;
+    }
+    // こっちはCopilotが生成してくれたコード
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const username = form.username.value;
+      console.log(`https://atcoder.jp/users/${username}`);
+    });
+  </script>
+</body>
+
+</html>
