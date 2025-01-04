@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AtCoder User Rating Graph</title>
+  <style>
+    body {
+      text-align: center;
+      /* テキストの中央揃え */
+    }
+  </style>
+</head>
+
+<body>
+  <p>AtCoderのユーザー名を入れてください</p>
+  <!-- method を POST に変更 -->
+  <form id="username-form" method="POST">
+    <input type="text" name="username" />
+    <input type="submit" value="送信" />
+  </form>
+  <div id="graph">
+    {% block content %}{% endblock %}
+    {% if canvas_data_url %}
+      <h2>{{ username }} のRating Graph</h2>
+      <img src="{{ canvas_data_url }}" alt="Canvas Image">
+    {% endif %}
+  </div>
+</body>
+
+</html>
